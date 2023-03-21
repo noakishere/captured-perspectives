@@ -1,11 +1,13 @@
 let video;
 
 function setup() {
-  createCanvas(640, 480);
+  var myCanvas = createCanvas(640, 480);
   background(100);
   video = createCapture(VIDEO); //access live webcam
   video.size(640, 480); //change the size to 320 x 240
   video.hide();
+
+  myCanvas.parent("picture");
 }
 
 function keyPressed() {
