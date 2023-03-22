@@ -8,6 +8,9 @@ author, and this description to match your project!
 
 "use strict";
 
+// localforage backend server config
+localforage.setDriver(localforage.INDEXEDDB);
+
 let myCanvas;
 
 let capture;
@@ -81,7 +84,6 @@ function keyPressed() {
 		// newPic = capture.get(0, 0, 500, 350);
 		newPic.copy(capture, 0, 0, capture.width, capture.height, 0, 0, newPic.width, newPic.height);
 		showCamera = false;
-		// takesnap();
 	}
 }
 
@@ -114,6 +116,14 @@ function storeImage() {
 				console.log("Error storing image in localForage: ", err);
 			});
 	});
+}
+
+function storeImageToLocalForage() {
+	newPic.canvas.toBlob((blob) => {
+		localforage.setItem("screenshot", blob);
+	});
+
+	window.location.replace("processedImagePage.html");
 }
 
 /** PROD TOOLS */

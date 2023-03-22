@@ -5,22 +5,44 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<!-- Library script(s) -->
+		<script src="../js/libraries/p5.min.js"></script>
+		<script src="../js/libraries/p5.sound.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
 
-		<script src="https://cdn.rawgit.com/localForage/localForage/4ce19202/dist/localforage.min.js"></script>
+		<!-- Includes the p5.collide2D addon library -->
+		<script defer src="https://unpkg.com/p5.collide2d"></script>
 	</head>
 	<body>
 		<script>
+			// localforage
+			// 	.getItem("image")
+			// 	.then(function (base64Img) {
+			// 		// Create an img element with the base64 data
+			// 		var img = document.createElement("img");
+			// 		img.src = base64Img;
+			// 		document.body.appendChild(img);
+			// 	})
+			// 	.catch(function (err) {
+			// 		console.log("Error retrieving image from localForage: ", err);
+			// 	});
+
 			localforage
-				.getItem("image")
-				.then(function (base64Img) {
-					// Create an img element with the base64 data
-					var img = document.createElement("img");
-					img.src = base64Img;
-					document.body.appendChild(img);
+				.length()
+				.then(function (numberOfKeys) {
+					// Outputs the length of the database.
+					console.log(numberOfKeys);
 				})
 				.catch(function (err) {
-					console.log("Error retrieving image from localForage: ", err);
+					// This code runs if there were any errors
+					console.log(err);
 				});
+
+			localforage.getItem("screenshot").then((blob) => {
+				let img = document.createElement("img");
+				img.src = URL.createObjectURL(blob);
+				document.body.appendChild(img);
+			});
 		</script>
 	</body>
 </html>
