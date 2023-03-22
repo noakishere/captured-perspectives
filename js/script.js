@@ -8,10 +8,16 @@ author, and this description to match your project!
 
 "use strict";
 
+let myCanvas;
+
 let capture;
+let newPic;
+
 let button;
 
-let newPic;
+let imageCounter = 0;
+
+let showCamera = true;
 
 /**
 Description of preload
@@ -22,40 +28,92 @@ function preload() {}
 Description of setup
 */
 function setup() {
-	createCanvas(750, 750);
+	myCanvas = createCanvas(640, 480);
+	myCanvas.parent("webcamCanvas");
 	capture = createCapture(VIDEO);
-	capture.size(500, 240);
+	capture.size(640, 480);
 	capture.hide();
 
-	// button = createButton("snap");
+	// button = createButton("Go to next page");
 	// button.mousePressed(takesnap);
 
-	newPic = createImage(500, 240);
+	newPic = createImage(capture.width, capture.height);
 }
 
 /**
 Description of draw()
 */
 function draw() {
-	background(255);
-	// image(capture, 0, 0, 500, 240);
-	image(newPic, width / 2, height / 2, 350, 350);
-	// image(capture, 0, 0, 320, 240);
-	filter(INVERT);
+	background("black");
 
-	ruler();
+	if (showCamera) {
+		image(capture, 0, 0); //show the camera
+	}
+
+	image(newPic, 0, 0); // the captured pic
+
+	// image(capture, 0, 0, 320, 240);
+	// filter(INVERT);
+
+	// ruler();
 }
 
 function takesnap() {
-	newPic = capture.get(0, 0, 500, 240);
+	// newPic = capture.get(0, 0, 500, 500);
+	// saveCanvas("myPicture", "png", "D:/_CART/Captured_Perspectives/assets/images");
+	// let formData = new FormData();
+	// formData.append("file", canvas.toDataURL());
+	// fetch("/saveImage", {
+	// 	method: "POST",
+	// 	body: formData,
+	// })
+	// 	.then((response) => {
+	// 		window.location.href =
+	// 			"pages/processedImagePage.html?image=../../assets/images/myPicture.png";
+	// 	})
+	// 	.catch((error) => {
+	// 		console.error(error);
+	// 	});
 }
 
 function keyPressed() {
 	if (key == " ") {
-		//this means space bar, since it is a space inside of the single quotes
-		// image(video, 0, 0); //draw the image being captured on webcam onto the canvas at the position (0, 0) of the canvas
-		takesnap();
+		// newPic = capture.get(0, 0, 500, 350);
+		newPic.copy(capture, 0, 0, capture.width, capture.height, 0, 0, newPic.width, newPic.height);
+		showCamera = false;
+		// takesnap();
 	}
+}
+
+function getImageAsBase64(url, callback) {
+	var xhr = new XMLHttpRequest();
+	xhr.onload = function () {
+		var reader = new FileReader();
+		reader.onloadend = function () {
+			callback(reader.result);
+		};
+
+		reader.readAsDataURL(xhr.response);
+	};
+
+	xhr.open("GET", url);
+	xhr.responseType = "blob";
+	xhr.send();
+}
+
+function storeImage() {
+	var imageUrl = `D:/_CART/Captured_Perspectives/assets/images/image${imageCounter}.jpg`;
+
+	getImageAsBase64(imageUrl, function (base64Img) {
+		localforage
+			.setItem("image", base64Img)
+			.then(function () {
+				console.log("Image stored in localForage.");
+			})
+			.catch(function (err) {
+				console.log("Error storing image in localForage: ", err);
+			});
+	});
 }
 
 /** PROD TOOLS */

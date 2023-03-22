@@ -5,6 +5,22 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+
+		<script src="https://cdn.rawgit.com/localForage/localForage/4ce19202/dist/localforage.min.js"></script>
 	</head>
-	<body></body>
+	<body>
+		<script>
+			localforage
+				.getItem("image")
+				.then(function (base64Img) {
+					// Create an img element with the base64 data
+					var img = document.createElement("img");
+					img.src = base64Img;
+					document.body.appendChild(img);
+				})
+				.catch(function (err) {
+					console.log("Error retrieving image from localForage: ", err);
+				});
+		</script>
+	</body>
 </html>
