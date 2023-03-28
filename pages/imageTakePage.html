@@ -33,27 +33,49 @@
 		<h3>Using CSS to style an HTML Form</h3>
 
 		<div class="container">
-			<h2>Prompt here</h2>
+			<div id="mainContainer">
+				<h2 id="prompt">Prompt here</h2>
 
-			<div id="webcamCanvas"></div>
+				<div id="webcamCanvas"></div>
 
-			<!-- <form action="/processedImagePage.html"> -->
-			<input type="text" id="description" placeholder="Insert description here" />
+				<!-- <form action="/processedImagePage.html"> -->
+				<textarea
+					type="text"
+					id="description"
+					placeholder="Narrate your story!"
+					rows="6"
+					cols="10"
+				></textarea>
 
-			<label for="filter" placeholder="Image options"></label>
-			<select id="filter">
-				<option value="F1">Fitler 1</option>
-				<option value="F2">Filter 2</option>
-			</select>
+				<!-- <label for="filter" placeholder="Image options"></label>
+				<select id="filter">
+					<option value="F1">Fitler 1</option>
+					<option value="F2">Filter 2</option>
+				</select>
 
-			<label for="sound" placeholder="Sound options"></label>
-			<select id="filter">
-				<option value="S1">Sound 1</option>
-				<option value="S2">Sound 2</option>
-			</select>
-			<button onclick="storeImageToLocalForage()">Submit</button>
-			<input type="submit" value="Submit" />
+				<label for="sound" placeholder="Sound options"></label>
+				<select id="filter">
+					<option value="S1">Sound 1</option>
+					<option value="S2">Sound 2</option>
+				</select> -->
+			</div>
+
+			<button id="submitPicBtn" onclick="storeImageToLocalForage()">
+				Submit
+			</button>
+			<button id="retake" onclick="retakeImage()">Retake</button>
+			<button id="leftPicBtn" onclick="browsePics(-1)">Left</button>
+			<button id="RightPicBtn" onclick="browsePics(1)">Right</button>
+			<button id="backBtn" onclick="goBackCamera()">Camera</button>
+			<!-- <input type="submit" value="Submit" /> -->
 			<!-- </form> -->
+		</div>
+		<div class="images-container" id="imageContainer">
+			<div id="images">
+				<h3 id="imgPrompt"></h3>
+				<img id="currentPic" src="" alt="" />
+				<p id="imgStory"></p>
+			</div>
 		</div>
 	</body>
 </html>

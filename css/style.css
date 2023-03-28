@@ -20,20 +20,36 @@ Also hides overflow.
 
 **********************************************/
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	padding: 0;
 	margin: 0;
 	display: grid; /* Set up the grid and justify/align to center */
 	justify-content: center;
 	align-content: center;
-	height: 100vh; /* Body is the height of the viewport */
-	overflow: hidden; /* Hide anything that goes off the window size */
+	/* Body is the height of the viewport */
+	/* overflow: hidden; */
 	background-color: black;
 }
 
 .container {
 	width: 100%;
 	align-self: center;
+	/* display: none; */
+}
+
+textarea {
+	resize: none;
+}
+
+#prompt {
+	text-align: center;
+	color: white;
+	padding: 2%;
+	resize: none;
 }
 
 /* text box */
@@ -46,6 +62,15 @@ select {
 	border: 1px solid #3a3a3a;
 	border-radius: 4px;
 	box-sizing: border-box;
+}
+
+textarea {
+	/* height: 100px; */
+	width: 100%;
+}
+
+video {
+	margin: auto;
 }
 
 /* button */
@@ -70,4 +95,18 @@ div {
 	border-radius: 5px;
 	background-color: #252525;
 	padding: 20px;
+}
+
+.images-container {
+	width: 100%;
+	border-radius: 0px;
+	margin-bottom: 5%;
+}
+
+#imgStory {
+	color: white;
+}
+
+#imgPrompt {
+	color: white;
 }
