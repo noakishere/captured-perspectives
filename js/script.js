@@ -103,7 +103,7 @@ function draw() {
 	background("black");
 
 	if (showCamera) {
-		// image(capture, 0, 0); //show the camera
+		// image(capture, 50, 50); //show the camera
 		capture.show();
 	}
 
@@ -148,17 +148,7 @@ function keyPressed() {
 		picAlreadySubmitted = true;
 
 		retakeBtn.style.display = "inline-block";
-		newPic.copy(
-			capture,
-			0,
-			0,
-			capture.width,
-			capture.height,
-			0,
-			0,
-			newPic.width,
-			newPic.height
-		);
+		newPic.copy(capture, 0, 0, capture.width, capture.height, 0, 0, newPic.width, newPic.height);
 
 		showCamera = false;
 		takeImage = true;

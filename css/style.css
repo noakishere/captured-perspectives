@@ -67,6 +67,9 @@ select {
 textarea {
 	/* height: 100px; */
 	width: 100%;
+	font-size: 18px;
+	padding: 10px;
+	margin: auto;
 }
 
 video {
@@ -108,5 +111,9 @@ div {
 }
 
 #imgPrompt {
+	color: white;
+}
+
+h5 {
 	color: white;
 }

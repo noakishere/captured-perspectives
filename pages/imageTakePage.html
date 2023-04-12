@@ -35,6 +35,9 @@
 		<div class="container">
 			<div id="mainContainer">
 				<h2 id="prompt">Prompt here</h2>
+				<h4 id="prompt">
+					Keep your finger on the left button, and lightly press right to take the pic
+				</h4>
 
 				<div id="webcamCanvas"></div>
 
@@ -60,9 +63,7 @@
 				</select> -->
 			</div>
 
-			<button id="submitPicBtn" onclick="storeImageToLocalForage()">
-				Submit
-			</button>
+			<button id="submitPicBtn" onclick="storeImageToLocalForage()">Submit</button>
 			<button id="retake" onclick="retakeImage()">Retake</button>
 			<button id="leftPicBtn" onclick="browsePics(-1)">Left</button>
 			<button id="RightPicBtn" onclick="browsePics(1)">Right</button>
