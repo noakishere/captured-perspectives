@@ -20,100 +20,169 @@ Also hides overflow.
 
 **********************************************/
 
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital@1&display=swap");
+
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-	padding: 0;
-	margin: 0;
-	display: grid; /* Set up the grid and justify/align to center */
-	justify-content: center;
-	align-content: center;
-	/* Body is the height of the viewport */
-	/* overflow: hidden; */
-	background-color: black;
+  padding: 0;
+  margin: 0;
+  display: grid; /* Set up the grid and justify/align to center */
+  justify-content: center;
+  align-content: center;
+  /* Body is the height of the viewport */
+  /* overflow: hidden; */
+  background-color: black;
+  font-family: monospace;
 }
 
 .container {
-	width: 100%;
-	align-self: center;
-	/* display: none; */
+  width: 100%;
+  align-self: center;
+  margin: auto;
+  /* display: none; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 2px solid #ffffff;
 }
 
 textarea {
-	resize: none;
+  resize: none;
+  font-family: monospace;
 }
 
 #prompt {
-	text-align: center;
-	color: white;
-	padding: 2%;
-	resize: none;
+  text-align: center;
+  color: white;
+  padding: 2%;
+  resize: none;
 }
 
 /* text box */
 input[type="text"],
 select {
-	width: 100%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
-	border: 1px solid #3a3a3a;
-	border-radius: 4px;
-	box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 textarea {
-	/* height: 100px; */
-	width: 100%;
-	font-size: 18px;
-	padding: 10px;
-	margin: auto;
+  /* height: 100px; */
+  width: 100%;
+  font-size: 16px;
+  padding: 0px;
+  margin: auto;
+  font-family: monospace;
+  border-radius: 10px;
 }
 
 video {
-	margin: auto;
+  margin: auto;
 }
 
 /* button */
 input[type="submit"] {
-	width: 100%;
-	background-color: #3d3d3d;
-	color: white;
-	padding: 14px 20px;
-	margin: 8px 0;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
+  width: 100%;
+  background-color: #3d3d3d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* button hover */
 input[type="submit"]:hover {
-	background-color: #7e7e7e;
+  background-color: #7e7e7e;
 }
 
 /* submission box */
 div {
-	border-radius: 5px;
-	background-color: #252525;
-	padding: 20px;
+  background-color: #111111;
+  padding: 20px;
+  margin: auto;
 }
 
 .images-container {
-	width: 100%;
-	border-radius: 0px;
-	margin-bottom: 5%;
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  border: 1px solid #ffffff;
 }
 
 #imgStory {
-	color: white;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #imgPrompt {
-	color: white;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h5 {
-	color: white;
+  color: white;
+}
+
+#prompt {
+  color: white;
+  font-family: monospace;
+}
+
+h4 {
+  color: white;
+  font-family: monospace;
+}
+
+#description {
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
+.button {
+  margin: auto;
+  position: relative;
+  border: none;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 200ms, background 200ms;
+  font-family: monospace;
+}
+
+.button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-5px);
+}
+
+h2 {
+  font-size: 18pt;
 }
