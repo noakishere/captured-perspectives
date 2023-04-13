@@ -20,8 +20,7 @@ Also hides overflow.
 
 **********************************************/
 
-@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital@1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@1,300&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -54,6 +53,10 @@ body {
   align-items: center;
   border-radius: 20px;
   border: 2px solid #ffffff;
+}
+
+.title {
+  font-family: 'Averia Serif Libre', cursive;
 }
 
 textarea {
