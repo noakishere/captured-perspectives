@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      width="device-width,"
+      initial-scale="1.0,"
+      maximum-scale="1.0,"
+      user-scalable="0"
+    />
 
-    <title>project 1 - r.acone</title>
+    <title>Captured Perspectives</title>
 
     <!-- CSS stylesheet(s) -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -12,10 +18,7 @@
     <!-- Library script(s) -->
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
-
-
-    <!-- Includes the p5.collide2D addon library -->
-    <script defer src="https://unpkg.com/p5.collide2d"></script>
+    <script src="https://cdn.rawgit.com/localForage/localForage/4ce19202/dist/localforage.min.js"></script>
 
     <!-- My script(s) -->
     <script src="js/script.js"></script>
@@ -24,34 +27,21 @@
   <body>
     <!-- HTML would go here if needed. -->
 
-    <h3>Using CSS to style an HTML Form</h3>
-    
-    <div>
+    <div class="startScreen">
+      <h1 class="title">Captured Perspectives</h1>
+      <p class="intro">
+        Captured Perspectives emphasizes the importance of collaboration in our
+        creative works, and how storytelling brings the community together.
+      </p>
 
-      <h2>Prompt here</h2>
-
-      <div id="picture"></div>
-      <form action="/action_page.php">
-        <input type="text" id="description" placeholder="Insert description here">
-    
-        <label for="filter" placeholder="Image options"></label>
-        <select id="filter">
-          <option value="F1">Fitler 1</option>
-          <option value="F2">Filter 2</option>
-        </select>
-
-        <label for="sound" placeholder="Sound options"></label>
-        <select id="filter">
-          <option value="S1">Sound 1</option>
-          <option value="S2">Sound 2</option>
-        </select>
-
-        
-    
-        <input type="submit" value="Submit">
-      </form>
+      <button id="myButton" class="button">Start</button>
     </div>
-
+    <div class="bg"></div>
   </body>
 
+  <script>
+    document.getElementById("myButton").onclick = function () {
+      location.href = "pages/imageTakePage.html";
+    };
+  </script>
 </html>
