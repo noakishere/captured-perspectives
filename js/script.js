@@ -1,5 +1,5 @@
 /**
-Title of Project
+Title of Project: Captured Perspectives
 Author Name
 
 This is a template. You must fill in the title,
@@ -11,12 +11,50 @@ author, and this description to match your project!
 // localforage backend server config
 localforage.setDriver(localforage.INDEXEDDB);
 
+// let prompts = [
+// 	"give me your best power pose",
+// 	"Let's see your most joyful expression",
+// 	"give me your best surprised expression",
+// 	"Can you portray a sense of calm and serenity?",
+// 	"Let's see your most curious expression",
+// ];
 let prompts = [
-	"give me your best power pose",
-	"Let's see your most joyful expression",
-	"give me your best surprised expression",
-	"Can you portray a sense of calm and serenity?",
-	"Let's see your most curious expression",
+	[
+		"Walking through the forest and feeling curious.",
+		"You are on your way to visit your grandmother, who lives deep in the forest. Along the way, you encounter many interesting sights and sounds.",
+	],
+	[
+		"Meeting the Big Bad Wolf and feeling cautious.",
+		"While walking through the forest, you meet a sly and cunning wolf who asks you many questions about your destination.",
+	],
+	[
+		"Arriving at your grandmother's house and feeling excited.",
+		"You finally arrive at your grandmother's house, feeling happy and excited to see her. You share many stories and laughs together.",
+	],
+	[
+		"Discovering the wolf in disguise and feeling frightened.",
+		"You discover that the wolf has disguised himself as your grandmother, and you are terrified by his deception.",
+	],
+	[
+		"Outsmarting the wolf and feeling clever.",
+		"You use your wit and cunning to outsmart the wolf, tricking him into revealing his true identity.",
+	],
+	[
+		"Escaping from the wolf's clutches and feeling relieved.",
+		"You escape from the wolf's grasp and run to safety, feeling relieved and grateful to be alive.",
+	],
+	[
+		"Navigating the forest alone and feeling independent.",
+		"You venture back into the forest alone, feeling confident and independent in your abilities.",
+	],
+	[
+		"Meeting other creatures in the forest and feeling connected.",
+		"Along your journey, you meet many other creatures of the forest, and feel a deep sense of connection and belonging with them.",
+	],
+	[
+		"Returning home and feeling changed.",
+		"After your harrowing experience with the wolf, you return home feeling different and changed by the events that have transpired.",
+	],
 ];
 
 let myCanvas;
@@ -38,6 +76,7 @@ let imageContainer;
 let promptTitle;
 let narrationText;
 let imgPrompt;
+let narrativeBit;
 
 let imageCounter = 0;
 
@@ -48,6 +87,8 @@ let picAlreadySubmitted = false;
 
 let globalPicArray = [];
 let galleryPics = [];
+
+let storyLineCounter = 0;
 
 /**
 Description of preload
@@ -63,9 +104,6 @@ function setup() {
 	capture = createCapture(VIDEO);
 	capture.size(640, 480);
 	// capture.hide();
-
-	// button = createButton("Go to next page");
-	// button.mousePressed(takesnap);
 
 	newPic = createImage(capture.width, capture.height);
 	galleryPic = createImage(capture.width, capture.height);
@@ -90,10 +128,12 @@ function setup() {
 	p5Canvas.style.display = "block";
 
 	promptTitle = document.getElementById("prompt");
-	generateNewPrompt();
 
-	narrationText = document.getElementById("description");
+	// narrationText = document.getElementById("description");
 	imgPrompt = document.getElementById("imgPrompt");
+	narrativeBit = document.getElementById("narrativeBit");
+	console.log(narrativeBit);
+	generateNewPrompt();
 }
 
 /**
@@ -139,7 +179,18 @@ function takesnap() {
 }
 
 function generateNewPrompt() {
-	promptTitle.innerText = prompts[floor(random(0, prompts.length))];
+	// promptTitle.innerText = prompts[floor(random(0, prompts.length))];
+	console.log(prompts[storyLineCounter][0]);
+	promptTitle.innerText = "Image Prompt: " + prompts[storyLineCounter][0];
+	narrativeBit.innerText = prompts[storyLineCounter][1];
+
+	console.log(storyLineCounter);
+	if (storyLineCounter < prompts.length) {
+		storyLineCounter++;
+	}
+	if (storyLineCounter >= prompts.length) {
+		storyLineCounter = 0;
+	}
 }
 
 function keyPressed() {
@@ -148,7 +199,17 @@ function keyPressed() {
 		picAlreadySubmitted = true;
 
 		retakeBtn.style.display = "inline-block";
-		newPic.copy(capture, 0, 0, capture.width, capture.height, 0, 0, newPic.width, newPic.height);
+		newPic.copy(
+			capture,
+			0,
+			0,
+			capture.width,
+			capture.height,
+			0,
+			0,
+			newPic.width,
+			newPic.height
+		);
 
 		showCamera = false;
 		takeImage = true;
@@ -190,7 +251,8 @@ function storeImage() {
 
 function storeImageToLocalForage() {
 	newPic.canvas.toBlob((blob) => {
-		var newNarrationText = narrationText.value;
+		// var newNarrationText = narrationText.value;
+		var newNarrationText = narrativeBit.innerText;
 		var newPromptImg = promptTitle.innerText;
 		var newObj = {
 			title: newPromptImg,
@@ -217,26 +279,8 @@ function storeImageToLocalForage() {
 }
 
 function populateImages(i = 0) {
-	// let imageContainer = document.getElementById("images");
-
-	// // // imageContainer.innerHTML = "";
-
-	// globalPicArray.forEach((element) => {
-	// 	let img = document.createElement("img");
-	// 	img.src = URL.createObjectURL(element);
-	// 	console.log(img.src);
-	// 	imageContainer.appendChild(img);
-	// });
-
-	// globalPicArray.forEach((element) => {
-	// 	let img = document.createElement("img");
-	// 	// img.src = URL.createObjectURL(element);
-	// 	img.src = element;
-	// 	console.log(img.src);
-	// 	imageContainer.appendChild(img);
-	// });
-
 	capture.hide();
+
 	picAlreadySubmitted = true;
 	imageContainer.style.display = "block";
 	p5Canvas.style.display = "none";
@@ -251,7 +295,7 @@ function populateImages(i = 0) {
 	takeImage = false;
 	showGallery = true;
 
-	console.log(globalPicArray[i]);
+	// console.log(globalPicArray[i]);
 
 	let newImage = document.getElementById("currentPic");
 	newImage.src = URL.createObjectURL(globalPicArray[i].blobImg);
@@ -276,7 +320,7 @@ function populateImages(i = 0) {
 
 	// imageCounter = 0;
 
-	console.log(newPic);
+	// console.log(newPic);
 }
 
 function browsePics(i = 0) {
@@ -313,10 +357,11 @@ function goBackCamera() {
 
 	document.getElementById("images").scrollIntoView();
 
-	narrationText.value = "";
+	// narrationText.value = "";
 
 	capture.show();
-	promptTitle.innerText = prompts[floor(random(0, prompts.length))];
+	// promptTitle.innerText = prompts[floor(random(0, prompts.length))];
+	generateNewPrompt();
 }
 
 window.addEventListener("keydown", function (e) {

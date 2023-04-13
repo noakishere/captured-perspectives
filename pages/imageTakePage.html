@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      width="device-width,"
-      initial-scale="1.0,"
-      maximum-scale="1.0,"
-      user-scalable="0"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			width="device-width,"
+			initial-scale="1.0,"
+			maximum-scale="1.0,"
+			user-scalable="0"
+		/>
 
-    <title>Captured Perspectives</title>
+		<title>Captured Perspectives</title>
 
-    <!-- CSS stylesheet(s) -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<!-- CSS stylesheet(s) -->
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
 
-    <!-- Library script(s) -->
-    <script src="../js/libraries/p5.min.js"></script>
-    <script src="../js/libraries/p5.sound.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
+		<!-- Library script(s) -->
+		<script src="../js/libraries/p5.min.js"></script>
+		<script src="../js/libraries/p5.sound.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
 
-    <!-- Includes the p5.collide2D addon library -->
-    <script defer src="https://unpkg.com/p5.collide2d"></script>
+		<!-- Includes the p5.collide2D addon library -->
+		<script defer src="https://unpkg.com/p5.collide2d"></script>
 
-    <!-- My script(s) -->
-    <script src="../js/script.js"></script>
-  </head>
+		<!-- My script(s) -->
+		<script src="../js/script.js"></script>
+	</head>
 
-  <body>
-    <!-- HTML would go here if needed. -->
+	<body>
+		<!-- HTML would go here if needed. -->
 
-    <h3>Using CSS to style an HTML Form</h3>
+		<h3>Using CSS to style an HTML Form</h3>
 
-    <div class="container">
-      <div id="mainContainer">
-        <h2 id="prompt">Prompt here</h2>
-        <h4 id="prompt">
-          Keep your finger on the left button, and lightly press right to take
-          the pic
-        </h4>
+		<div class="container">
+			<div id="mainContainer">
+				<h2 id="prompt">Prompt here</h2>
+				<p id="narrativeBit"></p>
+				<h4 id="prompt">
+					<span style="color: brown">Camera tip:</span> Keep your finger on the
+					left button, and lightly press right to take the pic
+				</h4>
 
-        <div id="webcamCanvas"></div>
+				<div id="webcamCanvas"></div>
 
-        <!-- <form action="/processedImagePage.html"> -->
-        <textarea
-          type="text"
-          id="description"
-          placeholder="Narrate your story!"
-          rows="6"
-          cols="10"
-        ></textarea>
+				<!-- <form action="/processedImagePage.html"> -->
+				<!-- <textarea
+					type="text"
+					id="description"
+					placeholder="Narrate your story!"
+					rows="6"
+					cols="10"
+				></textarea> -->
 
-        <!-- <label for="filter" placeholder="Image options"></label>
+				<!-- <label for="filter" placeholder="Image options"></label>
 				<select id="filter">
 					<option value="F1">Fitler 1</option>
 					<option value="F2">Filter 2</option>
@@ -62,39 +63,24 @@
 					<option value="S1">Sound 1</option>
 					<option value="S2">Sound 2</option>
 				</select> -->
-      </div>
+			</div>
 
-      <div class="buttons">
-        <button
-          class="button"
-          id="submitPicBtn"
-          onclick="storeImageToLocalForage()"
-        >
-          Submit
-        </button>
-        <button class="button" id="retake" onclick="retakeImage()">
-          Retake
-        </button>
-        <button class="button" id="leftPicBtn" onclick="browsePics(-1)">
-          Left
-        </button>
-        <button class="button" id="RightPicBtn" onclick="browsePics(1)">
-          Right
-        </button>
-        <button class="button" id="backBtn" onclick="goBackCamera()">
-          Camera
-        </button>
-      </div>
-
-      <!-- <input type="submit" value="Submit" /> -->
-      <!-- </form> -->
-    </div>
-    <div class="images-container" id="imageContainer">
-      <div id="images">
-        <h3 id="imgPrompt"></h3>
-        <img id="currentPic" src="" alt="" />
-        <p id="imgStory"></p>
-      </div>
-    </div>
-  </body>
+			<button id="submitPicBtn" onclick="storeImageToLocalForage()">
+				Submit
+			</button>
+			<button id="retake" onclick="retakeImage()">Retake</button>
+			<button id="leftPicBtn" onclick="browsePics(-1)">Left</button>
+			<button id="RightPicBtn" onclick="browsePics(1)">Right</button>
+			<button id="backBtn" onclick="goBackCamera()">Camera</button>
+			<!-- <input type="submit" value="Submit" /> -->
+			<!-- </form> -->
+		</div>
+		<div class="images-container" id="imageContainer">
+			<div id="images">
+				<h3 id="imgPrompt"></h3>
+				<img id="currentPic" src="" alt="" />
+				<p id="imgStory"></p>
+			</div>
+		</div>
+	</body>
 </html>
