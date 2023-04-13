@@ -59,6 +59,9 @@ let prompts = [
 
 let myCanvas;
 
+let mainPadAddress = "../assets/sounds/littlered.mp3";
+let mainPad;
+
 let capture;
 let newPic;
 let galleryPic;
@@ -93,7 +96,9 @@ let storyLineCounter = 0;
 /**
 Description of preload
 */
-function preload() {}
+function preload() {
+	mainPad = loadSound(mainPadAddress);
+}
 
 /**
 Description of setup
@@ -134,6 +139,9 @@ function setup() {
 	narrativeBit = document.getElementById("narrativeBit");
 	console.log(narrativeBit);
 	generateNewPrompt();
+
+	mainPad.setVolume(0.2);
+	mainPad.loop();
 }
 
 /**
