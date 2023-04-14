@@ -2,8 +2,8 @@
 
 ##### Kamyar Karimi and Rebecca Acone, April 13, 2023
 
-![](sc1.png)
-![](sc2.png)
+![](assets/images/sc1.PNG)
+![](assets/images/sc2.PNG)
 
 Captured Perspectives emphasizes the prompted storytellings of our everyday lives. It tries to engage its audience (2 at a time) to take on the role of a photographer and a model. Then, they’re given a prompt from the popular tale Little Red Riding Hood where they should bring that feeling to life together. Once the picture is taken, and the creators are satisfied with the result, they can submit the picture that narrates the prompt they were given. Participants are led to a second page where they can scroll through the prompts and follow the story with the captured pictures. The music piece that loops throughout the experience was created to follow the feeling of the story.
 
@@ -11,8 +11,8 @@ Captured Perspectives emphasizes the importance of collaboration in our creative
 
 ## Installation + Run
 
-![](sc4.png)
-![](sc5.png)
+![](assets/images/sc4.PNG)
+![](assets/images/sc5.PNG)
 
 The physical camera that we developed is a hardware concept using MakeyMakey. In addition, we used an outer webcam for it so that it could be hand-held. It for creative engagements with alternative inputs than a mouse and a keyboard. It’s also a part of our work’s exploration on how digital pieces can be more engaging with their physical audiences in bigger spaces such as galleries and physical installations.
 
@@ -22,7 +22,7 @@ We would have liked to add different stories to this project where participants 
 
 ## Sketches, ideas
 
-![](sc3.png)
+![](assets/images/sc3.PNG)
 
 The general idea that we first came up with and stuck with is seen in the sketch above.
 
