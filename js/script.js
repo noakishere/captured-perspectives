@@ -1,23 +1,14 @@
 /**
 Title of Project: Captured Perspectives
-Author Name
+Authors Name: Kamyar Karimi - Rebecca Acone
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+Captured Perspectives emphasizes the importance of collaboration in our creative works, and
+				how storytelling brings the community together.
 */
 
 "use strict";
 
-// localforage backend server config
-localforage.setDriver(localforage.INDEXEDDB);
-
-// let prompts = [
-// 	"give me your best power pose",
-// 	"Let's see your most joyful expression",
-// 	"give me your best surprised expression",
-// 	"Can you portray a sense of calm and serenity?",
-// 	"Let's see your most curious expression",
-// ];
+// Main prompts with narrative bits associated to each
 let prompts = [
 	[
 		"Walking through the forest and feeling curious.",
@@ -62,11 +53,13 @@ let myCanvas;
 let mainPadAddress = "../assets/sounds/littlered.mp3";
 let mainPad;
 
+// Video capture variables
 let capture;
 let newPic;
 let galleryPic;
 let currentPic;
 
+// DOM variables
 let leftBtn;
 let rightBtn;
 let submitBtn;
@@ -76,6 +69,7 @@ let backBtn;
 let p5Canvas;
 let imageContainer;
 
+// DOM Prompt variables
 let promptTitle;
 let narrationText;
 let imgPrompt;
@@ -88,15 +82,16 @@ let takeImage = false;
 let showGallery = false;
 let picAlreadySubmitted = false;
 
-let globalPicArray = [];
-let galleryPics = [];
+let globalPicArray = []; // holds all the images that are submitted by users
 
+// Keeps track of the prompt progression
 let storyLineCounter = 0;
 
 /**
 Description of preload
 */
 function preload() {
+	//sound setup
 	mainPad = loadSound(mainPadAddress);
 }
 
@@ -104,15 +99,20 @@ function preload() {
 Description of setup
 */
 function setup() {
+	//canvas setup
 	myCanvas = createCanvas(640, 480);
 	myCanvas.parent("webcamCanvas");
+
+	//video setup
 	capture = createCapture(VIDEO);
 	capture.size(640, 480);
 	// capture.hide();
 
+	// they will be following what the webcam captures to print it on the canvas
 	newPic = createImage(capture.width, capture.height);
 	galleryPic = createImage(capture.width, capture.height);
 
+	// DOM references
 	submitBtn = document.getElementById("submitPicBtn");
 	backBtn = document.getElementById("backBtn");
 	retakeBtn = document.getElementById("retake");
@@ -132,14 +132,14 @@ function setup() {
 	p5Canvas = document.getElementById("mainContainer");
 	p5Canvas.style.display = "block";
 
+	// prompt section HTML DOM
 	promptTitle = document.getElementById("prompt");
-
-	// narrationText = document.getElementById("description");
 	imgPrompt = document.getElementById("imgPrompt");
 	narrativeBit = document.getElementById("narrativeBit");
-	console.log(narrativeBit);
+
 	generateNewPrompt();
 
+	// Sound configs
 	mainPad.setVolume(0.2);
 	mainPad.loop();
 }
@@ -151,44 +151,16 @@ function draw() {
 	background("black");
 
 	if (showCamera) {
-		// image(capture, 50, 50); //show the camera
 		capture.show();
 	}
 
 	if (takeImage) {
 		image(newPic, 0, 0); // the captured pic
 	}
-	// else if (showGallery) {
-	// 	image(newPic, 0, 0);
-	// }
-
-	// image(capture, 0, 0, 320, 240);
-	// filter(INVERT);
-
-	// ruler();
 }
 
-function takesnap() {
-	// newPic = capture.get(0, 0, 500, 500);
-	// saveCanvas("myPicture", "png", "D:/_CART/Captured_Perspectives/assets/images");
-	// let formData = new FormData();
-	// formData.append("file", canvas.toDataURL());
-	// fetch("/saveImage", {
-	// 	method: "POST",
-	// 	body: formData,
-	// })
-	// 	.then((response) => {
-	// 		window.location.href =
-	// 			"pages/processedImagePage.html?image=../../assets/images/myPicture.png";
-	// 	})
-	// 	.catch((error) => {
-	// 		console.error(error);
-	// 	});
-}
-
+// Goes through the prompts array and takes the next element
 function generateNewPrompt() {
-	// promptTitle.innerText = prompts[floor(random(0, prompts.length))];
-	console.log(prompts[storyLineCounter][0]);
 	promptTitle.innerText = "Image Prompt: " + prompts[storyLineCounter][0];
 	narrativeBit.innerText = prompts[storyLineCounter][1];
 
@@ -202,22 +174,12 @@ function generateNewPrompt() {
 }
 
 function keyPressed() {
+	// avoids constantly taking pictures
 	if (key == " " && !picAlreadySubmitted) {
-		// newPic = capture.get(0, 0, 500, 350);
 		picAlreadySubmitted = true;
 
 		retakeBtn.style.display = "inline-block";
-		newPic.copy(
-			capture,
-			0,
-			0,
-			capture.width,
-			capture.height,
-			0,
-			0,
-			newPic.width,
-			newPic.height
-		);
+		newPic.copy(capture, 0, 0, capture.width, capture.height, 0, 0, newPic.width, newPic.height);
 
 		showCamera = false;
 		takeImage = true;
@@ -226,40 +188,11 @@ function keyPressed() {
 	}
 }
 
-function getImageAsBase64(url, callback) {
-	var xhr = new XMLHttpRequest();
-	xhr.onload = function () {
-		var reader = new FileReader();
-		reader.onloadend = function () {
-			callback(reader.result);
-		};
-
-		reader.readAsDataURL(xhr.response);
-	};
-
-	xhr.open("GET", url);
-	xhr.responseType = "blob";
-	xhr.send();
-}
-
-function storeImage() {
-	var imageUrl = `D:/_CART/Captured_Perspectives/assets/images/image${imageCounter}.jpg`;
-
-	getImageAsBase64(imageUrl, function (base64Img) {
-		localforage
-			.setItem("image", base64Img)
-			.then(function () {
-				console.log("Image stored in localForage.");
-			})
-			.catch(function (err) {
-				console.log("Error storing image in localForage: ", err);
-			});
-	});
-}
-
-function storeImageToLocalForage() {
+// Processes each image that's submitted to the array as an object to be processed by the gallery section
+function storeImageToLocalArray() {
+	// using blob format because the images need to be converted to binary to be able to be shown on the gallery again
+	// while they're stored in an array
 	newPic.canvas.toBlob((blob) => {
-		// var newNarrationText = narrationText.value;
 		var newNarrationText = narrativeBit.innerText;
 		var newPromptImg = promptTitle.innerText;
 		var newObj = {
@@ -268,27 +201,16 @@ function storeImageToLocalForage() {
 			blobImg: blob,
 		};
 		globalPicArray.push(newObj);
-		// galleryPics.push(blob);
 
-		populateImages();
+		populateImages(); // shows the gallery section
 	});
-
-	// if (takeImage) {
-	// 	globalPicArray.push(newPic);
-	// 	console.log(globalPicArray);
-
-	// 	picAlreadySubmitted = true;
-	// 	capture.hide();
-	// 	populateImages();
-
-	// 	console.log(galleryPics);
-	// } else {
-	// }
 }
 
+// Processes all the images in the array to show on gallery
 function populateImages(i = 0) {
 	capture.hide();
 
+	// DOM configs
 	picAlreadySubmitted = true;
 	imageContainer.style.display = "block";
 	p5Canvas.style.display = "none";
@@ -303,8 +225,8 @@ function populateImages(i = 0) {
 	takeImage = false;
 	showGallery = true;
 
-	// console.log(globalPicArray[i]);
-
+	// Shows the images
+	// decodes the blob files to urls so that the image shows up
 	let newImage = document.getElementById("currentPic");
 	newImage.src = URL.createObjectURL(globalPicArray[i].blobImg);
 
@@ -313,24 +235,9 @@ function populateImages(i = 0) {
 
 	let newImgPrompt = document.getElementById("imgPrompt");
 	newImgPrompt.innerHTML = globalPicArray[i].title;
-
-	// newPic.copy(
-	// 	globalPicArray[i],
-	// 	0,
-	// 	0,
-	// 	globalPicArray[i].width,
-	// 	globalPicArray[i].height,
-	// 	0,
-	// 	0,
-	// 	newPic.width,
-	// 	newPic.height
-	// );
-
-	// imageCounter = 0;
-
-	// console.log(newPic);
 }
 
+// The function to browse through pics in the global pics array
 function browsePics(i = 0) {
 	if (imageCounter + i < globalPicArray.length && imageCounter + i >= 0) {
 		imageCounter += i;
@@ -346,9 +253,11 @@ function browsePics(i = 0) {
 	}
 }
 
+// Moves back from gallery to camera mode
 function goBackCamera() {
 	submitBtn.style.display = "inline-block";
 
+	// DOM CONFIGS
 	leftBtn.style.display = "none";
 	rightBtn.style.display = "none";
 	backBtn.style.display = "none";
@@ -365,13 +274,11 @@ function goBackCamera() {
 
 	document.getElementById("images").scrollIntoView();
 
-	// narrationText.value = "";
-
 	capture.show();
-	// promptTitle.innerText = prompts[floor(random(0, prompts.length))];
-	generateNewPrompt();
+	generateNewPrompt(); // show the new prompt
 }
 
+// Prevents from clicking on space to scroll through the page
 window.addEventListener("keydown", function (e) {
 	if (e.keyCode == 32 && e.target == document.body) {
 		e.preventDefault();
@@ -382,14 +289,6 @@ function retakeImage() {
 	picAlreadySubmitted = false;
 	retakeBtn.style.display = "none";
 }
-
-// function storeImageToLocalForage() {
-// 	newPic.canvas.toBlob((blob) => {
-// 		localforage.setItem("screenshot", blob);
-// 	});
-
-// 	window.location.replace("processedImagePage.html");
-// }
 
 /** PROD TOOLS */
 

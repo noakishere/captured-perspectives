@@ -28,17 +28,18 @@
 	</head>
 
 	<body>
+		<div class="bg"></div>
 		<!-- HTML would go here if needed. -->
 
-		<h3>Using CSS to style an HTML Form</h3>
+		<!-- <h3>Using CSS to style an HTML Form</h3> -->
 
 		<div class="container">
 			<div id="mainContainer">
 				<h2 id="prompt">Prompt here</h2>
 				<p id="narrativeBit"></p>
 				<h4 id="prompt">
-					<span style="color: brown">Camera tip:</span> Keep your finger on the
-					left button, and lightly press right to take the pic
+					<span style="color: brown">Camera tip:</span> Keep your finger on the left button, and
+					lightly press right to take the pic
 				</h4>
 
 				<div id="webcamCanvas"></div>
@@ -65,13 +66,16 @@
 				</select> -->
 			</div>
 
-			<button id="submitPicBtn" onclick="storeImageToLocalForage()">
-				Submit
-			</button>
-			<button id="retake" onclick="retakeImage()">Retake</button>
-			<button id="leftPicBtn" onclick="browsePics(-1)">Left</button>
-			<button id="RightPicBtn" onclick="browsePics(1)">Right</button>
-			<button id="backBtn" onclick="goBackCamera()">Camera</button>
+			<div>
+				<button class="button" id="submitPicBtn" onclick="storeImageToLocalArray()">Submit</button>
+				<button class="button" id="retake" onclick="retakeImage()">Retake</button>
+			</div>
+
+			<div>
+				<button class="button" id="leftPicBtn" onclick="browsePics(-1)">Left</button>
+				<button class="button" id="RightPicBtn" onclick="browsePics(1)">Right</button>
+				<button class="button" id="backBtn" onclick="goBackCamera()">Camera</button>
+			</div>
 			<!-- <input type="submit" value="Submit" /> -->
 			<!-- </form> -->
 		</div>
@@ -82,5 +86,7 @@
 				<p id="imgStory"></p>
 			</div>
 		</div>
+
+		<div class="bg"></div>
 	</body>
 </html>
